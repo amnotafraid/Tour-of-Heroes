@@ -1,4 +1,4 @@
-This is [The Tour of Heros - Part 1](https://angular.io/docs/ts/latest/tutorial/toh-pt1.html) tutorial.
+This is [The Tour of Heros - The Hero Editor](https://angular.io/docs/ts/latest/tutorial/toh-pt1.html) tutorial. It is branch Part1.
 
 To setup the project, use Angular CLI:
 ```
