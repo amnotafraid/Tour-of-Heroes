@@ -1,4 +1,4 @@
-This is [The Tour of Heros - Part 3](https://angular.io/docs/ts/latest/tutorial/toh-pt3.html) tutorial.
+This is [The Tour of Heros - Multiple Components](https://angular.io/docs/ts/latest/tutorial/toh-pt3.html) tutorial.  The branch is Part3.
 
 Use `ng serve` rather than `npm start` to serve the application.
 
