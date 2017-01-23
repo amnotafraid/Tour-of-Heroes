@@ -1,75 +1,20 @@
-This is [The Tour of Heros - Part 3](https://angular.io/docs/ts/latest/tutorial/toh-pt3.html) tutorial.
+This is [The Tour of Heros - Services](https://angular.io/docs/ts/latest/tutorial/toh-pt4.html) tutorial.
 
 Use `ng serve` rather than `npm start` to serve the application.
 
-Rather than creating the hero-detail component in an editor, I did this from the src/app directory:
+When you get to the part about *Use the Hero Service*, you need to modify src/app/app.module.ts.  Add this to the top:
 ```
-ng generate component hero-detail
+import { HeroService } from './hero.service';
 ```
-I removed the src/app/hero-detail/hero-detail.component.spec.ts file.
-
-Rather than putting the template information inside src/app/hero-detail/hero-detail.component.ts, I removed the auto-generated code and put this in src/app/hero-detail/hero-detail.component.html:
+And add to the providers array like this:
 ```
-  <div *ngIf="hero">
-    <h2>{{hero.name}} details!</h2>
-    <div><label>id: </label>{{hero.id}}</div>
-    <div>
-      <label>name: </label>
-      <input [(ngModel)]="hero.name" placeholder="name"/>
-    </div>
-  </div>
+providers: [HeroService],
 ```
-In `src/app/hero-detail/hero-detail.component.ts` I changed from this:
+It also needs to be added to the top of src/app/app.component.ts:
 ```
-selector: 'app-hero-detail',
+import { HeroService } from './hero.service';
 ```
-to this:
-```
-selector: 'hero-detail',
-```
-In `src/app/app.component.ts` the hero import looks like this:
-```
-import { Hero } from './hero';
-```
-In `src/app/hero-detail/hero-detail.component.ts` the hero import looks like this:
-```
-import { Hero } from '../hero';
-```
-Also, in this file, declare the here input like this:
-```
-export class HeroDetailComponent implements OnInit {
-
-  @Input() hero: Hero;
-
-  constructor() { } 
-```
-and make sure you add Input to the import list at the top:
-```
-import { Component, OnInit, Input } from '@angular/core';
-```
-You don't have to import HeroDetailComponent or change the @NgModule in AppModule, because the generator already added the import to src/app/app.module.ts. However, you must import the HeroDetail to src/app/app.component.ts.  Add this line to the top:
-
-```
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-```
-In the src/app/app.component.html, change from this:
-```
-<div *ngIf="selectedHero">
-  <h2>{{selectedHero.name}} details!</h2>
-  <div><label>id: </label>{{selectedHero.id}}</div>
-  <div>
-      <label>name: </label>
-      <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-  </div>
-</div>
-```
-to this:
-```
-<hero-detail [hero]="selectedHero"></hero-detail>
-```
-BTW, I removed these two files:
-* src/app/app.component.spec.ts
-* src/app/hero-detail/hero-detail.component.spec.ts
+But, you do not need to add to the providers array in the app.component decorator.  The providers array in `src/app/app.module.ts`.
 
 After this line is README.md that Angular generated for me.
 ***
