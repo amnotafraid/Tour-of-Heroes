@@ -1,4 +1,4 @@
-This is [The Tour of Heros - Part 2](https://angular.io/docs/ts/latest/tutorial/toh-pt2.html) tutorial.
+This is [The Tour of Heros - Master/Detail](https://angular.io/docs/ts/latest/tutorial/toh-pt2.html) tutorial.  The branch is Part2.
 
 Rather than trying to start the project with `ng start`, use the Angular CLI: `ng serve`
 
