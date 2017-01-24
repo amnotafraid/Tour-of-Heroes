@@ -1,6 +1,6 @@
 This is [The Tour of Heros - Routing](https://angular.io/docs/ts/latest/tutorial/toh-pt5.html) tutorial.
 
-The routing part is kind of long.  This is up to *Naviget to Hero Details*.
+The routing part is kind of long.  This is up to *Navigate to Hero Details*.
 
 Use `ng serve` rather than `npm start` to serve the application.
 
