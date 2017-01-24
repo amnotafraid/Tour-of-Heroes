@@ -6,7 +6,7 @@ ng new angular-tour-of-heroes
 ```
 Rather than trying to start the project with `ng start`, use the Angular CLI: `ng serve`
 
-In src/app/app.component.ts, add the title and hero variables.  Remove `templateUrl and add a template to the @Component decorator.
+In src/app/app.component.ts, add the title and hero variables.  Remove `templateUrl` and add a `template` to the @Component decorator.
 
 You don't need to import anything to the app.module.ts file because everything you need is already there.
 
