@@ -1,69 +1,65 @@
 This is [The Tour of Heros - Routing](https://angular.io/docs/ts/latest/tutorial/toh-pt5.html) tutorial.
 
-The routing part is kind of long.  This covers from *Navigate to Hero Details* to *Select a _Dashboard_ Hero*.
+The routing part is kind of long.  This covers from *Select a _Dashboard_ Hero* through *Refactor routes to a _Routing Module_*.
 
 Use `ng serve` rather than `npm start` to serve the application.
 
-## Configure a Route with a Parameter
+## Select a _Dahsboard_ Hero
 
-To *src/app/app.routes.ts*, add these lines:
+In *src/app/dashboard/dashboard.component.html*, you need to replace the entire <div *ngFor...>...</div> with this:
 ```
+  <a *ngFor="let hero of heroes"  [routerLink]="['/detail', hero.id]"  class="col-1-4"></a>
+```
+To make the *src/app/app.routes.ts* more compliant (like src/app-routing.module.ts), I changed from this:
+```
+import { HeroesComponent } from './heroes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-```
-and 
-```
+
+export const APP_ROUTES = [
+  { path: 'heroes', component: HeroesComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'detail/:id', component: HeroDetailComponent }
+];
 ```
-## Revise the _HeroDetailComponent_
+to this:
+```
+import { NgModule }             from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-To *src/app/heroes-detail.component.ts*, add these imports:
-```
-import { ActivatedRoute, Params }   from '@angular/router';
-import { Location }                 from '@angular/common';
-import 'rxjs/add/operator/switchMap';
+import { HeroesComponent } from './heroes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 
-import { HeroService } from '../hero.service';
-```
-Change the constructor:
-```
-  constructor(
-    private heroService: HeroService,
-    private route: ActivatedRoute,
-    private location: Location
-  ) { }
-```
+const routes: Routes = [
+  { path: 'heroes', component: HeroesComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'detail/:id', component: HeroDetailComponent }
+];
 
-And fix the ngOnInit:
+@NgModule({
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule {}  
 ```
-  ngOnInit() {
-		this.route.params
-			.switchMap((params: Params) => this.heroService.getHero(+params['id']))
-			.subscribe(hero => this.hero = hero);
-  }
+Add this line to *src/app/app.module.ts*:
 ```
-And add this function:
+import { AppRoutingModule } from './app.routes';
 ```
-	goBack(): void {
-		this.location.back();
-	}
+Change from this:
 ```
-To *src/app/hero.service.ts*, add this function:
+    RouterModule.forRoot(APP_ROUTES)
 ```
-  getHero(id: number): Promise<Hero> {
-    return this.getHeroes()
-               .then(heroes => heroes.find(hero => hero.id === id));
-  }
+to this:
 ```
-The *src/app/hero-detail/hero-detail.component.html* is going to look like this:
+    AppRoutingModule
 ```
-<div *ngIf="hero">
-  <h2>{{hero.name}} details!</h2>
-  <div><label>id: </label>{{hero.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="hero.name" placeholder="name"/>
-  </div>
-</div>
+In *src/app/app.module.ts* remove this:
+```
+import { APP_ROUTES } from './app.routes';
 ```
 
 After this line is README.md that Angular generated for me.

@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroService } from './hero.service';
 import { HeroesComponent } from './heroes.component';
-import { APP_ROUTES } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AppRoutingModule } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(APP_ROUTES)
+    AppRoutingModule
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]
