@@ -4,7 +4,7 @@ The routing part is kind of long.  This covers from *Select a _Dashboard_ Hero* 
 
 Use `ng serve` rather than `npm start` to serve the application.
 
-## Select a _Dahsboard_ Hero
+## Select a _Dashboard_ Hero
 
 In *src/app/dashboard/dashboard.component.html*, you need to replace the entire <div *ngFor...>...</div> with this:
 ```
